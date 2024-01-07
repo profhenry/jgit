@@ -21,6 +21,8 @@ public class GpgConfig {
 	 */
 	public enum GpgFormat implements Config.ConfigEnum {
 
+		/** Value for ssh signatures */
+		SSH("ssh"), //$NON-NLS-1$
 		/** Value for openpgp */
 		OPENPGP("openpgp"), //$NON-NLS-1$
 		/** Value for x509 */

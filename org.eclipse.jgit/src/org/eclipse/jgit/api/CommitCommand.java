@@ -323,10 +323,21 @@ public class CommitCommand extends GitCommand<RevCommit> {
 	private void sign(CommitBuilder commit) throws ServiceUnavailableException,
 			CanceledException, UnsupportedSigningFormatException {
 		if (gpgSigner == null) {
-			gpgSigner = GpgSigner.getDefault();
-			if (gpgSigner == null) {
-				throw new ServiceUnavailableException(
+			if (gpgConfig.getKeyFormat() == GpgFormat.SSH) {
+				try {
+					gpgSigner = (GpgSigner) Class.forName(
+							"org.eclipse.jgit.ssh.sign.SshSignerWithMina")
+							.newInstance();
+				} catch (InstantiationException | IllegalAccessException
+						| ClassNotFoundException exc) {
+					exc.printStackTrace();
+				}
+			} else {
+				gpgSigner = GpgSigner.getDefault();
+				if (gpgSigner == null) {
+					throw new ServiceUnavailableException(
 						JGitText.get().signingServiceUnavailable);
+				}
 			}
 		}
 		if (signingKey == null) {

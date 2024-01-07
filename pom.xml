@@ -1149,6 +1149,7 @@
     <module>org.eclipse.jgit.ssh.apache</module>
     <module>org.eclipse.jgit.ssh.apache.agent</module>
     <module>org.eclipse.jgit.ssh.jsch</module>
+    <module>org.eclipse.jgit.ssh.sign</module>
     <module>org.eclipse.jgit.pgm</module>
     <module>org.eclipse.jgit.lfs</module>
     <module>org.eclipse.jgit.lfs.server</module>
